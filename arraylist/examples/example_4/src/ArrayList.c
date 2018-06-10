@@ -117,15 +117,19 @@ int al_deleteArrayList(ArrayList* this)
     return returnAux;
 }
 
-/** \brief  Delete arrayList
+/** \brief  length of arrayList
  * \param pList ArrayList* Pointer to arrayList
  * \return int Return length of array or (-1) if Error [pList is NULL pointer]
  *
  */
-int al_len(ArrayList* this)
-{
-    int returnAux = -1;
+int al_len(ArrayList* this){//retorna el tamaño del array list
+int returnAux = -1;
 
+  if(this !=NULL){
+
+    returnAux= this->size;
+
+  }
     return returnAux;
 }
 
