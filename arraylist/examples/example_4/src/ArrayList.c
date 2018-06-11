@@ -156,11 +156,22 @@ void* al_get(ArrayList* this, int index)
  *                  - ( 1) if this list contains at least one element pElement
  *
  */
-int al_contains(ArrayList* this, void* pElement)
-{
-    int returnAux = -1;
+int al_contains(ArrayList* this, void* pElement){
+int returnAux = -1;
+int i;
 
-    return returnAux;
+if(this != NULL && pElement != NULL){
+ for(i=0;i< this->size;i++){
+  if(this->pElements[i] == pElement){
+   returnAux = 1;
+   break;
+  }
+  else{
+    returnAux = 0;
+  }
+ }
+}
+return returnAux;
 }
 
 
@@ -172,11 +183,21 @@ int al_contains(ArrayList* this, void* pElement)
  *                  - ( 0) if Ok
  *
  */
-int al_set(ArrayList* this, int index,void* pElement)
-{
-    int returnAux = -1;
+int al_set(ArrayList* this, int index, void* pElement){
+int returnAux = -1;
+int i;
 
-    return returnAux;
+if(this !=NULL &&  pElement != NULL){
+
+ for(i=0; i< this->size; i++){
+  if( this->pElements[index] == this->pElements[i]){
+    al_add(this, this->pElements[i]);
+    returnAux=0;
+    break;
+  }
+ }
+}
+return returnAux;
 }
 
 

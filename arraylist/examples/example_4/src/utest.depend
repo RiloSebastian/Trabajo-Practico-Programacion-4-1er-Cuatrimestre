@@ -2226,9 +2226,19 @@
 	<string.h>
 	"../inc/Employee.h"
 
-1528650475 source:c:\users\sebas\desktop\repositorio\trabajo-practico-programacion-4-1er-cuatrimestre\arraylist\examples\example_4\src\arraylist.c
+1528742348 source:c:\users\sebas\desktop\repositorio\trabajo-practico-programacion-4-1er-cuatrimestre\arraylist\examples\example_4\src\arraylist.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"../inc/ArrayList.h"
+
+1528754676 source:c:\users\sebas\desktop\repositorio\trabajo-practico-programacion-4-1er-cuatrimestre\arraylist\examples\example_4\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"../testing/inc/main_test.h"
+	"../inc/ArrayList.h"
+	"../inc/Employee.h"
+
+1528648699 c:\users\sebas\desktop\repositorio\trabajo-practico-programacion-4-1er-cuatrimestre\arraylist\examples\example_4\testing\inc\main_test.h
 
