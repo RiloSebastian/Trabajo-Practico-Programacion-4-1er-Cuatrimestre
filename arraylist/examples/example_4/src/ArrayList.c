@@ -150,8 +150,9 @@ void* al_get(ArrayList* this, int index)
 {
 void* returnAux = NULL;
 
-if(this!= NULL && index< 0 &&  index < al_len(this)){
-      returnAux = this->pElements[index];
+if(this!= NULL && index>= 0 &&  index < al_len(this)){
+
+      returnAux = *(this->pElements+index);
      }
 return returnAux;
 }
@@ -195,17 +196,15 @@ return returnAux;
 int al_set(ArrayList* this, int index, void* pElement){
 int returnAux = -1;
 
-if(this !=NULL &&  pElement != NULL && index < al_len(this)){
+if(this !=NULL &&  pElement != NULL && index>=0 && index <= al_len(this)){
+if(index < al_len(this)){
    this->pElements[index]= pElement;
-   returnAux=0;
    }
-else if (index== this->size){
+else{
    al_add(this,pElement);
-   returnAux=0;
   }
-
-
-
+returnAux=0;
+}
 return returnAux;
 }
 

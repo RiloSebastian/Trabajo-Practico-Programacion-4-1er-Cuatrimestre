@@ -34,7 +34,7 @@ int main(void)
         startTesting(4); // al_len
         startTesting(5); // al_get
         startTesting(6); // al_content
-        //startTesting(7); // al_set
+        startTesting(7); // al_set
         //startTesting(8); // al_remove;
         //startTesting(9);
         /*startTesting(10);
