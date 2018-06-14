@@ -219,24 +219,16 @@ return returnAux;
 int al_remove(ArrayList* this,int index)
 {
 int returnAux = -1;
-int i;
 int j;
-void* pAux;
 
  if(this!= NULL && index>=0 && index<= this->size){
-  for(i=0; i< this->size; i++){
-   if(i == index){
-    pAux = *(this->pElements+i);
-    break;
-   }
-  }
   for(j=index+1; j< this->size; j++){
-    *(this->pElements+(j-1)) = *(this->pElements+j);
+   *(this->pElements+(j-1)) = *(this->pElements+j);
   }
   this->size--;
   returnAux=0;
  }
-    return returnAux;
+return returnAux;
 }
 
 
@@ -351,7 +343,12 @@ int al_isEmpty(ArrayList* this)
 void* al_pop(ArrayList* this,int index)
 {
     void* returnAux = NULL;
-
+    void* pAux;
+    if(this!=NULL && index>=0 && index< al_len(this)){
+     pAux= *(this->pElements+index);
+     al_remove(this, index);
+     returnAux= pAux;
+    }
     return returnAux;
 }
 
@@ -383,9 +380,20 @@ ArrayList* al_subList(ArrayList* this,int from,int to)
  */
 int al_containsAll(ArrayList* this,ArrayList* this2)
 {
-    int returnAux = -1;
+int returnAux = -1;
+int i;
 
-    return returnAux;
+ if(this!= NULL && this2!= NULL){
+  for(i=0;i< this->size;i++){
+   if(*(this->pElements+i) == *(this2->pElements+i)){
+    returnAux=1;
+   }
+   else{
+    returnAux=0;
+   }
+  }
+ }
+return returnAux;
 }
 
 /** \brief Sorts objects of list, use compare pFunc
@@ -397,9 +405,22 @@ int al_containsAll(ArrayList* this,ArrayList* this2)
  */
 int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
 {
-    int returnAux = -1;
+int returnAux = -1;
+int i;
+int j;
 
-    return returnAux;
+ if(this!= NULL && *(pFunc)!= NULL){
+  for(i=0; i < (this->size-1);i++){
+   for(j=i+1; j < this->size;j++){
+    if(pFunc(*(this->pElements+i),*(this->pElements+j))){
+     order=1;
+    }
+   }
+  }
+
+  returnAux= 0;
+ }
+return returnAux;
 }
 
 
