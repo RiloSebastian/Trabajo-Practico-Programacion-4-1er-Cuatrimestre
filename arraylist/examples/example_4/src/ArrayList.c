@@ -152,6 +152,7 @@ void* returnAux = NULL;
 
 if(this!= NULL && index>= 0 &&  index < al_len(this)){
 
+
       returnAux = *(this->pElements+index);
      }
 return returnAux;
@@ -198,7 +199,7 @@ int returnAux = -1;
 
 if(this !=NULL &&  pElement != NULL && index>=0 && index <= al_len(this)){
 if(index < al_len(this)){
-   this->pElements[index]= pElement;
+   *(this->pElements+index)= pElement;
    }
 else{
    al_add(this,pElement);
@@ -222,7 +223,7 @@ int i;
 int j;
 void* pAux;
 
- if(this!= NULL && index>0 && index< this->size){
+ if(this!= NULL && index>=0 && index<= this->size){
   for(i=0; i< this->size; i++){
    if(i == index){
     pAux = *(this->pElements+i);
@@ -247,9 +248,15 @@ void* pAux;
  */
 int al_clear(ArrayList* this){
 int returnAux = -1;
-
-
-    return returnAux;
+int i;
+if(this!=NULL){
+for(i=0; i< this->size;i++){
+ free(*(this->pElements+i));
+}
+ this->size=0;
+ returnAux=0;
+}
+return returnAux;
 }
 
 
@@ -281,8 +288,11 @@ int al_push(ArrayList* this, int index, void* pElement)
     int returnAux = -1;
     void** pAux;
 
-    if(this!= NULL && pElement != NULL && index>0 && index <= al_len(this)){
-
+    if(this!= NULL && pElement != NULL && index>=0 && index <= al_len(this)){
+    if(index == al_len(this)){
+     al_add(this, pElement);
+    }
+    returnAux=0;
     }
     return returnAux;
 }
@@ -296,9 +306,18 @@ int al_push(ArrayList* this, int index, void* pElement)
  */
 int al_indexOf(ArrayList* this, void* pElement)
 {
-    int returnAux = -1;
+int returnAux = -1;
+int i;
+if(this!= NULL && pElement != NULL){
+ for(i=0;i<this->size;i++){
+  if(*(this->pElements+i)== pElement){
+    returnAux= i;
+    break;
+  }
+ }
 
-    return returnAux;
+}
+return returnAux;
 }
 
 
@@ -311,6 +330,12 @@ int al_isEmpty(ArrayList* this)
 {
     int returnAux = -1;
 
+    if(this!=NULL){
+     returnAux=1;
+     if(this->size > 0){
+      returnAux=0;
+     }
+    }
     return returnAux;
 }
 
