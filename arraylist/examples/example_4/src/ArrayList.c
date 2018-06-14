@@ -114,6 +114,12 @@ int al_deleteArrayList(ArrayList* this)
 {
     int returnAux = -1;
 
+    if(this !=NULL){
+     free(this->pElements);
+     free(this);
+     returnAux= 0;
+    }
+
     return returnAux;
 }
 
@@ -142,9 +148,20 @@ int returnAux = -1;
  */
 void* al_get(ArrayList* this, int index)
 {
-    void* returnAux = NULL;
+void* returnAux = NULL;
+ int i;
 
-    return returnAux;
+  if(this!= NULL && index<0 && index< this->size){
+   for(i=0;i<this->size;i++){
+    if(*(this->pElements+i) != NULL){
+     if(index == i){
+      returnAux = *(this->pElements+i);
+      break;
+     }
+    }
+   }
+  }
+return returnAux;
 }
 
 
@@ -162,7 +179,7 @@ int i;
 
 if(this != NULL && pElement != NULL){
  for(i=0;i< this->size;i++){
-  if(this->pElements[i] == pElement){
+  if(*(this->pElements+i) == pElement){
    returnAux = 1;
    break;
   }
@@ -186,14 +203,14 @@ return returnAux;
 int al_set(ArrayList* this, int index, void* pElement){
 int returnAux = -1;
 int i;
-
-if(this !=NULL &&  pElement != NULL){
-
+void* pAux;
+if(this !=NULL &&  pElement != NULL && index < this->size){
  for(i=0; i< this->size; i++){
-  if( this->pElements[index] == this->pElements[i]){
-    al_add(this, this->pElements[i]);
-    returnAux=0;
-    break;
+  if(index == i){
+   pAux= *(this->pElements+i);
+   *(this->pElements+i)= pElement;
+   this->add(this,pAux);
+   returnAux=0;
   }
  }
 }
@@ -209,8 +226,24 @@ return returnAux;
  */
 int al_remove(ArrayList* this,int index)
 {
-    int returnAux = -1;
+int returnAux = -1;
+int i;
+int j;
+void* pAux;
 
+ if(this!= NULL && index>0 && index< this->size){
+  for(i=0; i< this->size; i++){
+   if(i == index){
+    pAux= *(this->pElements+i);
+    break;
+   }
+  }
+  for(j=index+1; j< this->size; j++){
+    *(this->pElements+(j-1)) = *(this->pElements+j);
+  }
+  this->size--;
+  returnAux=0;
+ }
     return returnAux;
 }
 
@@ -221,9 +254,9 @@ int al_remove(ArrayList* this,int index)
  * \return int Return (-1) if Error [pList is NULL pointer]
  *                  - ( 0) if Ok
  */
-int al_clear(ArrayList* this)
-{
-    int returnAux = -1;
+int al_clear(ArrayList* this){
+int returnAux = -1;
+
 
     return returnAux;
 }
