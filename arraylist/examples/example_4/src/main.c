@@ -32,9 +32,9 @@ int main(void)
         startTesting(2);// al_add
         startTesting(3);//al_delete
         startTesting(4); // al_len
-        //startTesting(5); // al_get
+        startTesting(5); // al_get
         startTesting(6); // al_content
-        startTesting(7); // al_set
+        //startTesting(7); // al_set
         //startTesting(8); // al_remove;
         //startTesting(9);
         /*startTesting(10);
