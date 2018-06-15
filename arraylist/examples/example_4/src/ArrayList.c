@@ -445,42 +445,31 @@ int j;
 if(this!= NULL && *(pFunc)!= NULL){
 
 if(order==1){
+ returnAux= 0;
 
- for(i=0; i < (this->size-1);i++){
-  for(j=i+1; j < this->size;j++){
+  for(i=0; i < (this->size-1);i++){
+   for(j=i+1; j < this->size ; j++){
 
-  aux=pFunc(*(this->pElements+i),*(this->pElements+j));
+   aux=pFunc(*(this->pElements+i),*(this->pElements+j));
 
-  if(aux==1){
+   if(aux==1){
 
-   pAux = *(this->pElements+j);
-   *(this->pElements+j) = *(this->pElements+i);
-   *(this->pElements+i) = pAux;
-  }
-  else if(order==-1){
-
-   pAux = *(this->pElements+i);
-   *(this->pElements+i) = *(this->pElements+j);
-   *(this->pElements+j) = pAux;
+    pAux = *(this->pElements+j);
+    *(this->pElements+j) = *(this->pElements+i);
+    *(this->pElements+i) = pAux;
+   }
    }
   }
  }
-returnAux= 0;
-}
 else if(order==0){
+ returnAux= 0;
 
   for(i=0; i < (this->size-1);i++){
-   for(j=i+1; j < this->size;j++){
+   for(j=i+1; j < this->size ; j++){
 
     aux=pFunc(*(this->pElements+i),*(this->pElements+j));
 
-    if(aux==1){
-
-     pAux = *(this->pElements+i);
-     *(this->pElements+i) = *(this->pElements+j);
-     *(this->pElements+j) = pAux;
-    }
-    else if (aux==-1){
+    if (aux==-1){
 
       pAux = *(this->pElements+j);
       *(this->pElements+j) = *(this->pElements+i);
@@ -488,10 +477,8 @@ else if(order==0){
     }
    }
   }
-    returnAux= 0;
 }
 else{
-
  returnAux=-1;
  }
 }
