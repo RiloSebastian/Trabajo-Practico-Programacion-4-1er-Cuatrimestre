@@ -278,15 +278,22 @@ ArrayList* al_clone(ArrayList* this)
 int al_push(ArrayList* this, int index, void* pElement)
 {
     int returnAux = -1;
-    void** pAux;
+    int i;
 
     if(this!= NULL && pElement != NULL && index>=0 && index <= al_len(this)){
-    if(index == al_len(this)){
      al_add(this, pElement);
-    }
+
+     if(index != al_len(this)){
+
+      for(i=this->size-1; i>=index; i--){
+       *(this->pElements+i) = *(this->pElements+(i-1));
+      }
+
+      al_set(this,index,pElement);
+     }
     returnAux=0;
     }
-    return returnAux;
+return returnAux;
 }
 
 
@@ -406,18 +413,32 @@ return returnAux;
 int al_sort(ArrayList* this, int (*pFunc)(void* ,void*), int order)
 {
 int returnAux = -1;
+void* pAux;
 int i;
 int j;
 
  if(this!= NULL && *(pFunc)!= NULL){
+
   for(i=0; i < (this->size-1);i++){
    for(j=i+1; j < this->size;j++){
-    if(pFunc(*(this->pElements+i),*(this->pElements+j))){
-     order=1;
+
+    order=pFunc(*(this->pElements+i),*(this->pElements+j));
+
+    if(order==1){
+     pAux = *(this->pElements+i);
+     *(this->pElements+i) = *(this->pElements+j);
+     *(this->pElements+j) = pAux;
+    }
+    else if(order==0){
+      pAux = *(this->pElements+j);
+      *(this->pElements+j) = *(this->pElements+i);
+      *(this->pElements+i) = pAux;
+    }
+    else{
+        returnAux=-1;
     }
    }
   }
-
   returnAux= 0;
  }
 return returnAux;
