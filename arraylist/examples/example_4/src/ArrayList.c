@@ -533,7 +533,7 @@ int j;
 
   if(index != al_len(this)){
 
-   for(j=0;j<10;i++){
+   for(j=0;j<AL_INCREMENT;i++){
     al_add(this,*(this->pElements+index));
 
     for(i=this->size-1; i>=index; i--){
